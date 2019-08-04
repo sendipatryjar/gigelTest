@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import colors from '../values/colors';
 import styles from '../values/styles';
 import {
     Linking,
@@ -8,14 +9,13 @@ import {
 import { getList, firstTime, loadmore } from '../actions/getListAction';
 import { connect } from 'react-redux';
 import { Card, CardTitle, CardContent, CardImage } from 'react-native-material-cards';
-import colors from '../values/colors';
 var Spinner = require('react-native-spinkit');
 
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = { dataSource: [] }
-        this.page = 1;
+        this.page = 0;
     }
     componentWillReceiveProps(newProps) {
         if (newProps.listNews != this.props.listNews) {
@@ -29,11 +29,10 @@ class Home extends Component {
         }
     }
     componentWillMount() {
-        //this.props.firstTime()
         this.props.getList()
     }
     loadMoreData = () => {
-        this.page = this.page + 1;
+        this.page = this.page+7;
         this.props.loadmore(this.page);
 
     };
@@ -83,7 +82,7 @@ class Home extends Component {
                        isVisible={this.props.loading}
                        size={100}
                        type='Wave'
-                       color={colors.green}
+                       color={colors.b}
            />
 
                 <FlatList

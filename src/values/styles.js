@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     },
     spinnerKotak: {
         alignSelf: 'center',
-        marginTop: 150,
+        marginTop: 50,
     },
     flatview: {
         
