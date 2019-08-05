@@ -4,3 +4,4 @@
  3. with cmd or terminal go to project folder --> cd gigeltest     
  4. run --> npm install     
  5. run project --> react-native run-android
+ 6. Download APK di directory gigelTest dengan nama "gigel_com.gigel.apk"
