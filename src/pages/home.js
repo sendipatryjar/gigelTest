@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import colors from '../values/colors';
 import styles from '../values/styles';
-import {
+import {Alert,
     Linking,
     View, FlatList, Text,
     TouchableOpacity
@@ -15,7 +15,7 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = { dataSource: [] }
-        this.page = 0;
+        this.page = 2;
     }
     componentWillReceiveProps(newProps) {
         if (newProps.listNews != this.props.listNews) {
@@ -32,7 +32,7 @@ class Home extends Component {
         this.props.getList()
     }
     loadMoreData = () => {
-        this.page = this.page+7;
+        this.page = this.page+8;
         this.props.loadmore(this.page);
 
     };
@@ -65,11 +65,23 @@ class Home extends Component {
         );
     }
     actionClick(url) {
-        return (
+        Alert.alert(
+            'Confirm',
+            'Apakah kamu ingin melihat detail berita ?',
+            [
 
+                { text: 'Tidak', onPress: () => console.log('Cancel Pressed') },
+                { text: 'Ya', onPress: () => this.detailPage(url) },
+            ],
+            { cancelable: false },
+        );
+       
+
+    }
+    detailPage(url){
+        return (
             Linking.openURL(url)
         );
-
     }
 
 
@@ -113,10 +125,9 @@ class Home extends Component {
 
 
                     }
-                    // numColumns={2}
+                 
                     ListFooterComponent={this.renderFooter.bind(this)}
 
-                    //Adding Load More button as footer component
                     keyExtractor={item => "" + item.title}
                 />
             </View>
